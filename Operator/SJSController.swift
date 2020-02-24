@@ -12,6 +12,8 @@ import JavaScriptCore
 
 class SJSController: UIViewController {
     
+    static let javaScriptURL = URL(string: "https://jumboassetsv1.blob.core.windows.net/publicfiles/interview_bundle.js")!
+    
     var jsWebView: WKWebView!
     var verticalStackView: UIStackView = UIStackView()
     
@@ -78,7 +80,7 @@ class SJSController: UIViewController {
     /// Gets the JavaScript source code from the URL provided
     func getJSContents() -> String {
         
-        let url = URL(string: "https://jumboassetsv1.blob.core.windows.net/publicfiles/interview_bundle.js")!
+        let url = SJSController.javaScriptURL
         
         guard let sourceCode = try? String(contentsOf:url), sourceCode.isEmpty == false else {
             print("Source code doesn't work")

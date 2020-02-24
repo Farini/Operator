@@ -18,28 +18,18 @@ class OperatorTests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
-            
-        }
-    }
     
     // MARK: - URL Test
+    
     func testURL_JavaScript_file() {
-        let url = URL(string: "https://jumboassetsv1.blob.core.windows.net/publicfiles/interview_bundle.js")!
+        
+        let url = SJSController.javaScriptURL
         let request = URLRequest(url: url)
-        // request.httpMethod = "GET"
+        
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let data = data {
                 if let string = String(data: data, encoding: .utf8) {
+                    // Make sure string is not empty
                     XCTAssert(string.isEmpty == false)
                     print("=========================")
                     print("JavaScript file contents")
@@ -49,6 +39,7 @@ class OperatorTests: XCTestCase {
             }
         }
         task.resume()
+        // make sure the current request is the request
         XCTAssert(task.currentRequest == request)
     }
     
